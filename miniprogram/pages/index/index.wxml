@@ -1,0 +1,43 @@
+<view>
+
+  <van-button
+      type="primary"
+      plain
+      bind:click="batchUpdate"
+      >
+      批量更新
+  </van-button>
+
+  <van-card
+    wx:for="{{movieList}}"
+    wx:key="item.id"
+    desc="{{item.year}}\t{{item.casts[0].name}}"
+    title="{{item.title}}"
+    thumb="{{item.images.small}}"
+  >
+  
+  <view slot="tags">
+    <van-tag
+      type="success"
+      size="medium"
+      plain
+      wx:for="{{item.genres}}"
+      wx:for-item="it"
+      wx:key="it">
+      {{it}}
+    </van-tag>
+  </view>
+
+  <view slot="footer">
+    <van-button
+      type="primary"
+      size="mini"
+      plain
+      data-id="{{item._id}}"
+      bind:click="toDetails"
+      >
+      查看详情
+    </van-button>
+  </view>
+  </van-card>
+</view>
