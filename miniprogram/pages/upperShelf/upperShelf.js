@@ -1,12 +1,11 @@
-// miniprogram/pages/my/my.js
+// miniprogram/pages/upperShelf/upperShelf.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    collapseIconSize: "60rpx",
-    collapseActiveNames: ['1', '2', '3'],
+
   },
 
   /**
@@ -65,19 +64,10 @@ Page({
 
   },
 
-  // 折叠面板事件
-  onCollapseChange(event) {
-    this.setData({
-      collapseActiveNames: event.detail
-    });
-  },
-
-  // 上架
-  toUpperShelfPage(event) {
-    let pageUrl = `../upperShelf/upperShelf`
-    wx.navigateTo({
-      url: pageUrl
+  // 后退
+  backward: function() {
+    wx.navigateBack({
+      delta: 1
     })
   }
-
 })

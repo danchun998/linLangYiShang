@@ -1,12 +1,12 @@
 <view>
 
-  <van-button
+  <!-- <van-button
       type="primary"
       plain
       bind:click="batchUpdate"
       >
       批量更新
-  </van-button>
+  </van-button> -->
 
   <van-card
     wx:for="{{movieList}}"

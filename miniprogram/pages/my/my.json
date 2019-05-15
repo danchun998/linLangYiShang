@@ -1,7 +1,9 @@
 {
   "usingComponents": {
-    "van-icon": "../../vant//icon/index"
-  },
-  "navigationBarBackgroundColor": "#ccc", // 导航颜色
-  "backgroundColor": "#ccc"
+    "van-icon": "../../vant/icon/index",
+    "van-collapse": "../../vant/collapse/index",
+    "van-collapse-item": "../../vant/collapse-item/index",
+    "van-row": "../../vant/row/index",
+    "van-col": "../../vant/col/index"
+  }
 }
