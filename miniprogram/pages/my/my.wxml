@@ -1,0 +1,26 @@
+<!-- 页面外层容器 -->
+<view class='my-page'>
+  <!-- 头部 -->
+  <view class='head'>
+    <!-- 用户头像 -->
+    <view class='head-userAvatar'>
+      <open-data type="userAvatar.Url" class="userAvatar"></open-data>
+    </view>
+    <!-- 用户昵称 -->
+    <view class='head-userNickName'>
+      <open-data type="userNickName" class="userNickName"></open-data>
+      <!-- 用户授权 -->
+      <view class='head-allowUserInfo'>
+        <van-icon name="exchange" size='30rpx' />
+      </view>
+    </view>
+  </view>
+
+  <!-- 主体 -->
+  <view class='body'>
+    <view class='body-extend'>
+    </view>
+    <view class='body-setting'>
+    </view>
+  </view>
+</view>
