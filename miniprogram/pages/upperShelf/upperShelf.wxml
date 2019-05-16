@@ -23,14 +23,26 @@
         class='list-img' 
         wx:for="{{model.imgs}}" 
         wx:key="{{index}}" 
-        wx:for-item="item">
-         <image src="{{item.url}}"></image>
+        wx:for-item="item"
+        data-index="{{index}}"
+        bindtap='previewImage'
+        >
+         <image src="{{item}}"></image>
+         <view class='remove-img'>
+          <van-icon
+            name="cross"
+            size='35rpx'
+            data-index="{{index}}"
+            catchtap='removeImg'
+          />
+         </view>
       </view>
 
       <!-- 上传图片的按钮 -->
       <view 
         class='list-img chooseImgBtn'
         bindtap='chooseImg'
+        hidden="{{model.imgs.length>=6}}"
       >
         <van-icon name="plus" size='50rpx'/>
       </view>

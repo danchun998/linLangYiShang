@@ -8,7 +8,8 @@ Page({
     model: {
       name: '中国建设银行大厦',
       code: '11055',
-      imgs: []
+      imgs: [
+      ]
     }
   },
 
@@ -70,28 +71,40 @@ Page({
 
   // 选择图片
   chooseImg: function() {
-    let _this = this;
+    let _imgs = this.data.model.imgs;
+    let _imgs_ = `model.imgs`;
+    let maxImgNum = 6 - _imgs.length
+
     wx.chooseImage({
+      count: maxImgNum,
       success: res => {
-        let _imgs = this.data.model.imgs;
-        const imagePaths = this.data.model.imgs.concat(res.tempFilePaths)
-        let currMaxImgNum = 6 - this.data.model.imgs.length;
-        let currimagePaths = imagePaths.slice(0, currMaxImgNum)
-        for (let i = 0; i < currimagePaths.length; i++) {
-          let obj = Object.create(null);
-          obj.url = currimagePaths[i];
-          this.data.model.imgs.push(obj);
-        }
-        let imgs = this.data.model.imgs
+        let chooseImgs = res.tempFilePaths.slice(0, maxImgNum)
+        _imgs = [..._imgs, ...chooseImgs]
         this.setData({
-          imgs: this.data.model.imgs
-        });
+          [_imgs_]: _imgs
+        })
       }
     })
   },
 
-  // 上传
-  upperShelf: function() {
+  // 图片预览
+  previewImage: function(e) {
+    let _imgs = this.data.model.imgs
+    let idx = e.currentTarget.dataset.index
+    wx.previewImage({
+      current: _imgs[idx],
+      urls: _imgs
+    })
+  },
 
+  // 移除图片
+  removeImg: function(e) {
+    let _imgs = this.data.model.imgs
+    let _imgs_ = `model.imgs`;
+    let idx = e.currentTarget.dataset.index
+    _imgs.splice(idx, 1)
+    this.setData({
+      [_imgs_]: _imgs
+    })
   }
 })
