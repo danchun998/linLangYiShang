@@ -1,3 +1,40 @@
 <view>
-  <van-nav-bar title="上架商品" left-text="返回" left-arrow custom-class="custom-van-nav-bar" bind:click-left="backward" />
+  <van-panel title="基本属性">
+    <van-field 
+        value="{{ model.name }}" 
+        label="名称" 
+        placeholder="请输入名称" 
+        clearable
+        required
+      />
+      <van-field 
+        value="{{ model.code }}"
+        label="代号"
+        placeholder="请输入代号"
+        clearable
+        required
+      />
+  </van-panel>
+  <van-panel title="附加图片">
+    <view class='list-container'>
+
+      <!-- 已经上传的图片 -->
+      <view 
+        class='list-img' 
+        wx:for="{{model.imgs}}" 
+        wx:key="{{index}}" 
+        wx:for-item="item">
+         <image src="{{item.url}}"></image>
+      </view>
+
+      <!-- 上传图片的按钮 -->
+      <view 
+        class='list-img chooseImgBtn'
+        bindtap='chooseImg'
+      >
+        <van-icon name="plus" size='50rpx'/>
+      </view>
+    </view>
+  </van-panel>
+  <van-button type="primary" size='large'>上传</van-button>
 </view>

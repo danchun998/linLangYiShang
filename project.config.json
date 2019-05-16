@@ -13,7 +13,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.5",
+	"libVersion": "2.6.6",
 	"appid": "wxd6b72a98f2f25a94",
 	"projectname": "linLangYiShang",
 	"miniprogramRoot": "miniprogram/",
@@ -79,9 +79,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "上架",
+					"id": 5,
+					"name": "上传",
 					"pathName": "pages/upperShelf/upperShelf",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -4,7 +4,7 @@
   <view class='head'>
     <!-- 用户头像 -->
     <view class='head-userAvatar'>
-      <open-data type="userAvatarUrl" class="userAvatar"></open-data>
+      <open-data type="userAvatar.Url" class="userAvatar"></open-data>
     </view>
     <!-- 用户昵称 -->
     <view class='head-userNickName'>
@@ -19,24 +19,27 @@
   <!-- 主体 -->
   <view class='body'>
     <van-collapse value="{{ collapseActiveNames }}" bind:change="onCollapseChange">
-      <!-- 商城 -->
+      <!-- 模型 -->
       <van-collapse-item class="collapse-item" name="1">
         <view slot="title">
-          <van-icon name="bag" /> 商城
+          <!-- <van-icon name="bag" /> -->
+          模型
         </view>
         <view>xxx</view>
       </van-collapse-item>
-      <!-- 推荐 -->
+      <!-- 分享 -->
       <van-collapse-item class="collapse-item" name="2">
         <view slot="title">
-          <van-icon name="fire" /> 推荐
+          <!-- <van-icon name="fire" /> -->
+          分享
         </view>
         <view>xxx</view>
       </van-collapse-item>
       <!-- 更多 -->
       <van-collapse-item class="collapse-item" name="3">
         <view slot="title">
-          <van-icon name="more" /> 更多
+          <!-- <van-icon name="more" /> -->
+          更多
         </view>
         <van-row gutter="20">
           <!-- 更多-设置 -->
@@ -46,11 +49,11 @@
               <view>设置</view>
             </view>
           </van-col>
-          <!-- 更多-上架 -->
+          <!-- 更多-上传 -->
           <van-col span="6">
             <view class='collapse-item-option' bindtap='toUpperShelfPage'>
               <van-icon name="add-o" size='{{collapseIconSize}}' />
-              <view>上架</view>
+              <view>上传</view>
             </view>
           </van-col>
         </van-row>
