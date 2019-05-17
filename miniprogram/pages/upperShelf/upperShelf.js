@@ -5,11 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    maxImgs: 3,
     model: {
-      name: '中国建设银行大厦',
-      code: '11055',
-      imgs: [
-      ]
+      name: '',
+      code: '',
+      imgs: []
     }
   },
 
@@ -69,11 +69,23 @@ Page({
 
   },
 
+  inputName(e) {
+    this.setData({
+      [`model.name`]: e.detail
+    })
+  },
+
+  inputCode(e) {
+    this.setData({
+      [`model.code`]: e.detail
+    })
+  },
+
   // 选择图片
   chooseImg: function() {
     let _imgs = this.data.model.imgs;
     let _imgs_ = `model.imgs`;
-    let maxImgNum = 6 - _imgs.length
+    let maxImgNum = this.data.maxImgs - _imgs.length;
 
     wx.chooseImage({
       count: maxImgNum,
@@ -106,5 +118,42 @@ Page({
     this.setData({
       [_imgs_]: _imgs
     })
+  },
+
+  // 上架
+  upperShelf: function() {
+    if (!this.vailForm()) {
+      return;
+    }
+
+    wx.showLoading({
+      title: '上传中...',
+    })
+
+    wx.cloud.callFunction({
+      name: 'upperShelf',
+      data: {
+        model: this.data.model
+      }
+    }).then(res => {
+      console.log("上架结果", res)
+      wx.hideLoading()
+    })
+  },
+
+  // 校验表单
+  vailForm: function(e) {
+    let vailRes = true;
+    let _mode = this.data.model;
+    if (_mode.name.trim() == '') {
+      vailRes = false;
+    }
+    if (_mode.code.trim() == '') {
+      vailRes = false;
+    }
+    if (_mode.imgs.length <= 0) {
+      vailRes = false;
+    }
+    return vailRes;
   }
 })
