@@ -1,4 +1,6 @@
-// miniprogram/pages/upperShelf/upperShelf.js
+import Toast from '../../vant/toast/toast';
+const App = getApp();
+
 Page({
 
   /**
@@ -10,14 +12,17 @@ Page({
       name: '',
       code: '',
       imgs: []
-    }
+    },
+    resetModel: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    this.setData({
+      resetModel: JSON.parse(JSON.stringify(this.data.model))
+    })
   },
 
   /**
@@ -120,14 +125,14 @@ Page({
     })
   },
 
-  // 上架
-  upperShelf: function() {
+  // 上架信息
+  upperShelfInfo: function() {
     if (!this.vailForm()) {
       return;
     }
 
     wx.showLoading({
-      title: '上传中...',
+      title: '上传中...'
     })
 
     wx.cloud.callFunction({
@@ -136,24 +141,62 @@ Page({
         model: this.data.model
       }
     }).then(res => {
-      console.log("上架结果", res)
+      if (res.result.err && res.result.errMsg) {
+        wx.hideLoading()
+        Toast.fail(res.result.errMsg)
+      } else {
+        // 上架图片
+        this.upperShelfImgs();
+      }
+    }).catch(err => {
+      console.log(err)
       wx.hideLoading()
     })
   },
 
+  // 上架图片
+  upperShelfImgs: function() {
+    let _imgs = this.data.model.imgs;
+    Promise.all(_imgs.map((item) => {
+        let itemCloudPath = App.globalData.upperShelfImgsBasePath + Date.now()  // 文件名称 
+        return wx.cloud.uploadFile({
+          cloudPath: itemCloudPath,
+          filePath: item,
+        })
+      }))
+      .then((uploadRes) => {
+        wx.hideLoading()
+        Toast.success("上传成功")
+        this.resetForm()
+      })
+      .catch((uploadErr) => {
+        wx.hideLoading()
+        console.log(uploadErr)
+      })
+  },
+
   // 校验表单
   vailForm: function(e) {
-    let vailRes = true;
-    let _mode = this.data.model;
+    let _mode = this.data.model
     if (_mode.name.trim() == '') {
-      vailRes = false;
+      Toast.fail("名称不能为空")
+      return false
     }
     if (_mode.code.trim() == '') {
-      vailRes = false;
+      Toast.fail("代号不能为空")
+      return false
     }
     if (_mode.imgs.length <= 0) {
-      vailRes = false;
+      Toast.fail("请至少上传一张附件图片")
+      return false
     }
-    return vailRes;
+    return true
+  },
+
+  // 重置表单
+  resetForm: function() {
+    this.setData({
+      model: JSON.parse(JSON.stringify(this.data.resetModel))
+    })
   }
 })

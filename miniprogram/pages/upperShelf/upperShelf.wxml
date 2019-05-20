@@ -52,5 +52,6 @@
       </view>
     </view>
   </van-panel>
-  <van-button type="primary" size='large' bind:click='upperShelf'>上传</van-button>
+  <van-button type="primary" size='large' bind:click='upperShelfInfo'>上传</van-button>
+  <van-toast id="van-toast" />
 </view>

@@ -3,7 +3,8 @@
     "van-panel": "../../vant/panel/index",
     "van-button": "../../vant/button/index",
     "van-field": "../../vant/field/index",
-    "van-icon": "../../vant/icon/index"
+    "van-icon": "../../vant/icon/index",
+    "van-toast": "../../vant/toast/index"
   },
   "navigationBarTitleText": "上传"
 }
