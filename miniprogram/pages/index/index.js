@@ -7,6 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+    bannerList: [{
+      code: "",
+      bannerImg: "https://images.unsplash.com/photo-1551334787-21e6bd3ab135?dw=640"
+    }, {
+      code: "",
+      bannerImg: "https://images.unsplash.com/photo-1551214012-84f95e060dee?dw=640"
+    }, {
+      code: "",
+      bannerImg: "https://images.unsplash.com/photo-1551446591-142875a901a1?dw=640"
+    }],
     movieList: []
   },
 
@@ -75,6 +85,7 @@ Page({
 
   },
 
+  // 详情页
   toDetails: function(e) {
     let toUrl = `../details/details?id=${e.currentTarget.dataset.id}`
     wx.navigateTo({
@@ -82,12 +93,13 @@ Page({
     })
   },
 
-  batchUpdate: function(){
+  // 批量更新数据库信息
+  batchUpdate: function() {
     wx.cloud.callFunction({
       name: 'batchUpdate',
       data: {}
-    }).then(res=>{
-      console.log("批量更新完成",res)
+    }).then(res => {
+      console.log("批量更新完成", res)
     })
   }
 })

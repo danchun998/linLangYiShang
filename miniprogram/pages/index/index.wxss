@@ -1,0 +1,8 @@
+swiper{
+  text-align: center;
+  width: 100%;
+}
+
+swiper-item image{
+  width: 100%;
+}
