@@ -6,7 +6,7 @@ Page({
    */
   data: {
     collapseIconSize: "60rpx",
-    collapseActiveNames: ['1', '2', '3'],
+    collapseActiveNames: ['1', '2', '3', '4'],
   },
 
   /**

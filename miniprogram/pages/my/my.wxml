@@ -39,7 +39,7 @@
       <van-collapse-item class="collapse-item" name="3">
         <view slot="title">
           <!-- <van-icon name="more" /> -->
-          更多
+          设置
         </view>
         <van-row gutter="20">
           <!-- 更多-设置 -->
@@ -49,7 +49,16 @@
               <view>设置</view>
             </view>
           </van-col>
-          <!-- 更多-上传 -->
+        </van-row>
+      </van-collapse-item>
+      <!-- 配置 -->
+      <van-collapse-item class="collapse-item" name="4">
+        <view slot="title">
+          <!-- <van-icon name="bag" /> -->
+          配置
+        </view>
+        <van-row gutter="20">
+          <!-- 配置-上传 -->
           <van-col span="6">
             <view class='collapse-item-option' bindtap='toUpperShelfPage'>
               <van-icon name="add-o" size='{{collapseIconSize}}' />
